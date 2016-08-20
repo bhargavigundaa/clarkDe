@@ -1,1 +1,1 @@
-export const questionPath = '/api/question-';
+export const questionPath = '/api/question/';

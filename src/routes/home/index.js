@@ -9,7 +9,7 @@
 
   export default {
 
-    path: '/',
+    path: '/question/:id',
     async action() {
       const homePageData = await getHomePageData();
       return <Home data={homePageData} />;

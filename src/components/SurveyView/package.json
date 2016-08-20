@@ -1,0 +1,6 @@
+{
+  "name": "SurveyView",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./SurveyView.js"
+}

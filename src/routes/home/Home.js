@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.scss';
 import { connect } from 'react-redux';
-import { getParameterByName } from '../../core/utils';
 import { QUESTION_URL_PARAM } from '../../constants';
 import fetch from '../../core/fetch';
 import { questionPath } from '../../core/urls';
+import GeneralView from '../../components/GeneralView';
+import SurveyView from '../../components/SurveyView';
 
 // import _ from 'lodash';
 
@@ -17,11 +18,16 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
   }
 
   async componentDidMount() {
-    const question = getParameterByName(QUESTION_URL_PARAM);
+    const question = window.location.pathname.split('/')[2];
     if (question) {
       const response = await fetch(`${questionPath}${question}`);
       const data = await response.json();
       this.initLocalStore(data.id);
+      this.setState({ //eslint-disable-line
+        seeingQuestion: true,
+        qid: data.id,
+        entireQstn: data
+      });
     }
   }
 
@@ -39,7 +45,12 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
   render() {
     return (
       <div className={s.container}>
-        Hello world {this.props.data.key}
+       {
+        this.state.seeingQuestion ?
+          <SurveyView entireQstn={this.state.entireQstn} />
+          :
+          <GeneralView />
+       }
       </div>
     );
   }

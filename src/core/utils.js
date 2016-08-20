@@ -20,19 +20,19 @@ export function getCookie(name) {
   return (value != null) ? unescape(value[1]) : null;
 }
 
-export function getParameterByName(names, urls) {
-  let url = urls;
-  let name = names;
-  if (!url) {
-    url = window.location.href;
-  }
-  name = name.replace(/[\[\]]/g, '\\$&');
-  const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`);
-  const results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
+// export function getParameterByName(names, urls) {
+//   let url = urls;
+//   let name = names;
+//   if (!url) {
+//     url = window.location.href;
+//   }
+//   name = name.replace(/[\[\]]/g, '\\$&');
+//   const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`);
+//   const results = regex.exec(url);
+//   if (!results) return null;
+//   if (!results[2]) return '';
+//   return decodeURIComponent(results[2].replace(/\+/g, ' '));
+// }
 
 export function encodeHTML(string) {
     return string.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
