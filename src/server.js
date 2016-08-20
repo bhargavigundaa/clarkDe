@@ -47,8 +47,6 @@ serverSideRender(app);
 // -----------------------------------------------------------------------------
 
 app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
-  logger.error(err, { pid: process.pid, remoteAddress: req.connection.remoteAddress });
-
   const template = require('./views/error.jade'); // eslint-disable-line global-require
   const statusCode = err.status || 500;
   res.status(statusCode);

@@ -6,8 +6,6 @@ import s from './SurveyView.scss';
 import fetch from '../../core/fetch';
 import _ from 'lodash';
 
-// import { connect } from 'react-redux';
-
 class SurveyView extends Component { // eslint-disable-line react/prefer-stateless-function
 
   constructor(props) {
@@ -19,7 +17,6 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
 
   async componentDidMount() {
     await this.fetchQuestion();
-    // alert(JSON.stringify(this.state.entireQstn));
   }
 
   getEachQuestion = () => {
@@ -99,7 +96,6 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
               <textarea
                 rows="4"
                 cols="50"
-                autofocus="true" //eslint-disable-line
                 name={question.name}
               >
               </textarea>
@@ -135,13 +131,4 @@ SurveyView.propTypes = {
   // entireQstn: React.PropTypes.object
 };
 
-// export default withStyles(s)(connect(({
-//   updateFooterContent,
-//   populateUserInfo
-// }) => {
-//   return {
-//     footerContent: updateFooterContent,
-//     populateUserInfo
-//   };
-// })(SurveyView));
 export default withStyles(s)(SurveyView);
