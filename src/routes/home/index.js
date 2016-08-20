@@ -1,17 +1,11 @@
   import React from 'react';
   // import { catalogDomain, homePageContentUrl } from '../../core/urls';
-  import Home from './Home';
-
-  async function getHomePageData() {
-    return { key: 'hello world' };
-  }
-
+  import SurveyView from '../../components/SurveyView';
 
   export default {
 
     path: '/question/:id',
-    async action() {
-      const homePageData = await getHomePageData();
-      return <Home data={homePageData} />;
+    action() {
+      return <SurveyView />;
     }
   };

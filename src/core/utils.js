@@ -14,11 +14,11 @@ export function stringifyQueryParams(obj) {
   return queryString.length ? `?${queryString.substr(0, queryString.length - 1)}` : '';
 }
 
-export function getCookie(name) {
-  const re = new RegExp(`${name}=([^;]+)`);
-  const value = re.exec(document.cookie);
-  return (value != null) ? unescape(value[1]) : null;
-}
+// export function getCookie(name) {
+//   const re = new RegExp(`${name}=([^;]+)`);
+//   const value = re.exec(document.cookie);
+//   return (value != null) ? unescape(value[1]) : null;
+// }
 
 // export function getParameterByName(names, urls) {
 //   let url = urls;
@@ -49,37 +49,37 @@ export const addParamToUrl = (relativeUrl, queryParam) => {
   return `${kvp[0]}?${qs.stringify(existing)}`;
 };
 
-const currentYPosition = () => {
-  // Firefox, Chrome, Opera, Safari
-  if (window.pageYOffset) {
-    return window.pageYOffset;
-  }
-  return 0;
-};
+// const currentYPosition = () => {
+//   // Firefox, Chrome, Opera, Safari
+//   if (window.pageYOffset) {
+//     return window.pageYOffset;
+//   }
+//   return 0;
+// };
 
-const callScrollSettimeout = (leapY, time) => {
-  setTimeout(() => {
-    window.scrollTo(0, leapY);
-  }, time);
-};
+// const callScrollSettimeout = (leapY, time) => {
+//   setTimeout(() => {
+//     window.scrollTo(0, leapY);
+//   }, time);
+// };
 
-export const scrollToTop = () => {
-  const distance = currentYPosition();
-  if (distance < 100) {
-    window.scrollTo(0, 0); return;
-  }
-  let speed = Math.round(distance / 100);
-  if (speed >= 20) {
-    speed = 25;
-  }
-  const step = Math.round(distance / 25);
-  let leapY = distance - step;
-  let timer = 0;
-  for (let i = distance; i > 0; i -= step) {
-    callScrollSettimeout(leapY, timer * speed);
-    leapY -= step; if (leapY < 0) leapY = 0; timer++;
-  }
-};
+// export const scrollToTop = () => {
+//   const distance = currentYPosition();
+//   if (distance < 100) {
+//     window.scrollTo(0, 0); return;
+//   }
+//   let speed = Math.round(distance / 100);
+//   if (speed >= 20) {
+//     speed = 25;
+//   }
+//   const step = Math.round(distance / 25);
+//   let leapY = distance - step;
+//   let timer = 0;
+//   for (let i = distance; i > 0; i -= step) {
+//     callScrollSettimeout(leapY, timer * speed);
+//     leapY -= step; if (leapY < 0) leapY = 0; timer++;
+//   }
+// };
 
 export const disableBodyScrolling = (condition) => {
   if (condition) {
@@ -89,11 +89,11 @@ export const disableBodyScrolling = (condition) => {
   }
 };
 
-export const addExtraParams = (url) => {
-  return addParamToUrl(url, {
-    channel: 'web',
-    child_site_id: 1,
-    site_id: 1,
-    version: 2
-  });
-};
+// export const addExtraParams = (url) => {
+//   return addParamToUrl(url, {
+//     channel: 'web',
+//     child_site_id: 1,
+//     site_id: 1,
+//     version: 2
+//   });
+// };
