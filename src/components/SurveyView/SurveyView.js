@@ -61,6 +61,16 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
     });
   }
 
+  nextQuestion = () => {
+    let { userProgress } = this.state;
+    userProgress = { ...userProgress, index: userProgress.index + 1 };
+    this.setState({
+      userProgress
+    }, () => {
+      this.getEachQuestion();
+    });
+  }
+
   render() {
     const { entireQstn = {} } = this.state;
     const { started } = this.state.userProgress;
@@ -73,6 +83,7 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
           <div>
             <div> {question.text} </div>
             {
+              // Radio Button
               question.type === 'radio' &&
               question.options.map((opt, ind) => {
                 return (
@@ -82,6 +93,30 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
                 );
               })
             }
+            {
+              // Text Area
+              question.type === 'textarea' &&
+              <textarea
+                rows="4"
+                cols="50"
+                autofocus="true" //eslint-disable-line
+                name={question.name}
+              >
+              </textarea>
+            }
+            {
+              // Check Boxes
+              question.type === 'checkbox' &&
+              question.options.map((opt, ind) => {
+                return (
+                  <div key={ind}>
+                    <input type="checkbox" name={question.name} value={opt} />{opt}
+                  </div>
+                );
+              })
+            }
+            {question.optional && <button onClick={this.skipQuestion}> Skip </button>}
+            <button onClick={this.nextQuestion}> Next </button>
           </div>
           :
           <div>

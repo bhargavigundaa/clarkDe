@@ -16,6 +16,7 @@
 		},
 		{
 			"type" : "textarea",
+			"name" : "carDesc",
 			"text" : "Provide a general description of your car"
 		},
 		{
