@@ -58,9 +58,9 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
     });
   }
 
-  nextQuestion = () => {
+  navigateQuestion = (prev) => {
     let { userProgress } = this.state;
-    userProgress = { ...userProgress, index: userProgress.index + 1 };
+    userProgress = { ...userProgress, index: userProgress.index + (prev ? -1 : 1) };
     this.setState({
       userProgress
     }, () => {
@@ -112,7 +112,8 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
               })
             }
             {question.optional && <button onClick={this.skipQuestion}> Skip </button>}
-            <button onClick={this.nextQuestion}> Next </button>
+            <button onClick={() => this.navigateQuestion(true)}> Previous </button>
+            <button onClick={() => this.navigateQuestion(false)}> Next </button>
           </div>
           :
           <div>
