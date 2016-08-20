@@ -16,18 +16,20 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
   }
 
   async componentDidMount() {
-    await this.fetchQuestion();
+    await this.fetchAllQuestions();
   }
 
   getEachQuestion = () => {
-    const { entireQstn = {}, userProgress } = this.state;
-    const question = _.get(entireQstn, Q_KEY, [])[userProgress.index];
+    const { entireQstn = {}, qIndex } = this.state;
+    const allQuestion = _.get(entireQstn, Q_KEY, []);
+    const question = allQuestion[qIndex];
     this.setState({
       question,
+      totalQstn: allQuestion.length - 1
     });
   }
 
-   fetchQuestion = async () => {
+   fetchAllQuestions = async () => {
     const question = window.location.pathname.split('/')[2];
     if (question) {
       const response = await fetch(`${questionPath}${question}`);
@@ -50,33 +52,30 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
   }
 
   startSurvey = () => {
-    const userProgress = { ...this.state.userProgress, started: true, index: 0 };
     this.setState({
-      userProgress
+      qIndex: 0
     }, () => {
       this.getEachQuestion();
     });
   }
 
   navigateQuestion = (prev) => {
-    let { userProgress } = this.state;
-    userProgress = { ...userProgress, index: userProgress.index + (prev ? -1 : 1) };
+    const { qIndex } = this.state;
     this.setState({
-      userProgress
+      qIndex: qIndex + (prev ? -1 : 1)
     }, () => {
       this.getEachQuestion();
     });
   }
 
   render() {
-    const { entireQstn = {} } = this.state;
-    const { started } = this.state.userProgress;
+    const { entireQstn = {}, qIndex, totalQstn } = this.state;
     const { question = {} } = this.state;
 
     return (
       <div className={s.footerInfo}>
         {
-          started ?
+          qIndex >= 0 ?
           <div>
             <div> {question.text} </div>
             {
@@ -111,9 +110,17 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
                 );
               })
             }
-            {question.optional && <button onClick={this.skipQuestion}> Skip </button>}
-            <button onClick={() => this.navigateQuestion(true)}> Previous </button>
-            <button onClick={() => this.navigateQuestion(false)}> Next </button>
+            <div>
+              {question.optional &&
+                <button onClick={this.skipQuestion}> Skip </button>
+              }
+              {qIndex > 0 &&
+                <button onClick={() => this.navigateQuestion(true)}> Previous </button>
+              }
+              {qIndex < totalQstn &&
+                <button onClick={() => this.navigateQuestion(false)}> Next </button>
+              }
+            </div>
           </div>
           :
           <div>
@@ -127,9 +134,4 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
     );
   }
 }
-
-SurveyView.propTypes = {
-  // entireQstn: React.PropTypes.object
-};
-
 export default withStyles(s)(SurveyView);
