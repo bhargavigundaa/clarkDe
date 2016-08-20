@@ -61,15 +61,33 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
   }
 
   render() {
-    const { entireQstn } = this.state;
+    const { entireQstn = {} } = this.state;
     const inProgress = this.state.userProgress.started;
-    const { question } = this.state;
+    const { question = {} } = this.state;
     // inProgress && this.getEachQuestion();
 
     return (
-        <div>
-          hi
-        </div>
+      <div className={s.footerInfo}>
+        {
+          inProgress ?
+          <div>
+            <div> {question.text} </div>
+            {
+              question.type === 'radio' &&
+              question.options.map((opt) => {
+                return <input type="radio" name={question.name} value={opt} />;
+              })
+            }
+          </div>
+          :
+          <div>
+            <div> Welcome to Clark.de survey </div>
+            <div> {entireQstn.title} </div>
+            <div> {entireQstn.desc} </div>
+            <button onClick={this.startSurvey}>Start Survey</button>
+          </div>
+        }
+      </div>
     );
   }
 }
