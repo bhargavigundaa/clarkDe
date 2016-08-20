@@ -1,0 +1,18 @@
+doctype html
+html(class="no-js", lang="en")
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(http-equiv='Cache-Control', content='no-cache, no-store, must-revalidate')
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title= title
+    meta(name="title", content=title)
+    meta(name="description", content=description)
+    meta(name="keywords", content=keywords)
+    meta(name="ROBOTS", content="INDEX,FOLLOW")
+    link(rel="favicon", href="favicon.ico")
+    link(rel="canonical", href="https://clark.com/")
+    link(type="application/opensearchdescription+xml", rel="search", href="/opensearch.xml")
+    style#css!= css
+  body
+    #app!= body
+    script#source(src=entry, data-initial-state=state)

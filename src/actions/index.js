@@ -1,0 +1,1 @@
+export setRuntimeVariable from './runtime';

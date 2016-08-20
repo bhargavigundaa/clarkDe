@@ -1,0 +1,393 @@
+@import '../variables.scss';
+@import '../../commonstyles/spriteMixin.scss';
+
+.cashBackInfo {
+  width: 94%;
+  float: left;
+  margin: 15px 3%;
+  background: $White;
+  border: 1px solid $PattensBlue;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 5px;
+  color: $darkGrey;
+}
+
+.footerInfo {
+  width: 100%;
+  float: left;
+  margin-top: 80px;
+}
+
+.footerTopNavInfo {
+  width: 100%;
+  float: left;
+  padding: 10px 3%;
+  background: $MidnightBlue;
+
+  .footerTopLink {
+    float: left;
+
+    a {
+      font-size: 1.2rem;
+      color: $White !important;
+      font-weight: 600;
+      margin-left: 15px;
+      text-decoration: none;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:hover {
+        color: $Cerulean !important;
+      }
+    }
+  }
+  .footerIconLink {
+    float: right;
+
+    a {
+      font-size: 1.8rem;
+      color: $White !important;
+      padding: 5px 10px;
+      text-decoration: none;
+      opacity: 0.6;
+    }
+
+    .noLink {
+      border-right: 1px solid $White;
+      padding: 0;
+      margin: 0 10px;
+      opacity: 0.6;
+    }
+  }
+}
+
+.footerLinkInfo {
+  @extend .footerTopNavInfo;
+  background: $White !important;
+}
+
+.footerCardInfo {
+  margin-top: 10px;
+
+  .cardDetail {
+    float: left;
+
+    i {
+      font-size: 1.1rem;
+      padding-left: 10px;
+
+      &:first-child {
+        padding-left: 0;
+      }
+    }
+    .cardText {
+      font-size: 1.1rem;
+      color: $Black;
+      font-weight: 600;
+      padding: 0 0 0 15px;
+    }
+  }
+
+  .appDescInfo {
+    float: right;
+    .seller {
+      margin-right: 5px;
+    }
+    a,
+    .seller {
+      width: 105px;
+      height: 42px;
+      font-size: 1.1rem;
+      color: $Black !important;
+      float: left;
+      padding: 5px;
+      text-decoration: none;
+      border: 1px solid $PattensBlue;
+      cursor: pointer;
+
+      i {
+        padding-right: 5px;
+      }
+
+      .bold {
+        font-weight: 600;
+        line-height: 1rem;
+        display: block;
+      }
+    }
+    a + a {
+      width: 108px;
+      margin-left: 10px;
+      padding: 3px 5px;
+    }
+  }
+
+}
+
+.disclaimerInfo {
+  width: 100%;
+  float: left;
+
+  .discHead {
+    font-size: 1.1rem;
+    color: $LightningYellow;
+    float: left;
+    padding-right: 15px;
+  }
+
+  .discDataInfo {
+    width: 680px;
+    float: left;
+    font-size: 1.1rem;
+    color: $darkGrey;
+
+    a {
+      font-size: 1.1rem;
+      color: $Cerulean;
+    }
+  }
+}
+
+.rechargeInfo {
+  width: 100%;
+  float: left;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid $PattensBlue;
+
+  .rechargeList {
+    width: 25%;
+    float: left;
+    min-height: 156px;
+    max-height: 230px;
+    padding-right: 25px;
+    margin-bottom: 20px;
+    .link {
+      position: relative;
+      padding-left: 10px;
+
+      &:first-child {
+        padding-left: 0 !important;
+      }
+      &::before {
+        content: '|';
+        position: absolute;
+        top: -2px;
+        left: 2px;
+      }
+    }
+  }
+
+  a {
+    font-size: 11px;
+    color: $darkGrey;
+    text-decoration: none;
+    &:hover {
+      color: $Cerulean;
+    }
+
+    &.rechargeHead {
+      color: $Black !important;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    &.more {
+      color: $Cerulean !important;
+      padding-left: 5px;
+    }
+
+  }
+}
+
+.goEasyInfo {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 10px 10px 0;
+  margin: 10px 0;
+  color: $darkGrey;
+  overflow: hidden;
+  clear: both;
+  background: $lightgreyBG;
+
+  h2 {
+    font-size: 1.4rem;
+    color: $Black;
+    font-weight: 600;
+    padding: 0 0 20px;
+    margin: 0;
+  }
+
+  a {
+    font-size: 1.1rem;
+    color: $Cerulean;
+    text-decoration: none;
+  }
+
+  p {
+    font-size: 1.1rem;
+    padding: 0 0 10px;
+    margin: 0;
+  }
+}
+
+.vtop {
+  vertical-align: top;
+}
+
+.fIcon {
+  @include sprite-image();
+  display: inline-block;
+}
+
+.iconVerifiedVisa {
+  width: 28px;
+  height: 13px;
+  background-position: -80px -256px;
+}
+
+.iconMastercard {
+  width: 35px;
+  height: 13px;
+  margin-left: 10px;
+  background-position: -119px -256px;
+}
+
+.iconPci {
+  width: 32px;
+  height: 13px;
+  margin-left: 10px;
+  background-position: -159px -256px;
+
+}
+
+.iconRuPay {
+  width: 40px;
+  height: 13px;
+  margin-left: 10px;
+  background-position: 0 -255px;
+
+}
+
+.iconPaytm {
+  width: 34px;
+  height: 11px;
+  margin: 0 5px 0 0;
+  background-position: -362px -208px;
+}
+
+.iconWallet {
+  width: 17px;
+  height: 17px;
+  margin: 0 5px 0 0;
+  background-position: -331px -205px;
+}
+
+.iconAndroid {
+  width: 14px;
+  height: 17px;
+  background-position: -120px -286px;
+
+  &:hover {
+    background-position: -120px -316px;
+  }
+}
+
+.iconApple {
+  width: 14px;
+  height: 17px;
+  background-position: -160px -286px;
+
+  &:hover {
+    background-position: -160px -316px;
+  }
+}
+
+.iconBlackberry {
+  width: 18px;
+  height: 13px;
+  background-position: -40px -287px;
+
+  &:hover {
+    background-position: -40px -317px;
+  }
+}
+
+.iconJava {
+  width: 14px;
+  height: 19px;
+  background-position: 0 -286px;
+
+  &:hover {
+    background-position: 0 -316px;
+  }
+}
+
+.iconWindows {
+  width: 17px;
+  height: 17px;
+  background-position: -80px -286px;
+
+  &:hover {
+    background-position: -80px -316px;
+  }
+}
+
+.iconTwitter {
+  width: 16px;
+  height: 13px;
+  background-position: -241px -288px;
+
+  &:hover {
+    background-position: -241px -318px;
+  }
+}
+
+.iconFacebook {
+  width: 10px;
+  height: 19px;
+  background-position: -201px -287px;
+
+  &:hover {
+    background-position: -201px -317px;
+  }
+}
+
+.iconInstagram {
+  width: 15px;
+  height: 15px;
+  background-position: -321px -287px;
+  &:hover {
+    background-position: -321px -317px;
+  }
+}
+
+.iconPinterest {
+  width: 12px;
+  height: 16px;
+  background-position: -281px -286px;
+  &:hover {
+    background-position: -281px -316px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .footerTopNavInfo,
+  .footerLinkInfo {
+    width: 1024px;
+  }
+  .footerTopLink {
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+
+  }
+  .footerIconLink {
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+  }
+}
