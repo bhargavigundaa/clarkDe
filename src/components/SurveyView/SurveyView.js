@@ -6,7 +6,7 @@ import s from './SurveyView.scss';
 import fetch from '../../core/fetch';
 import _ from 'lodash';
 
-class SurveyView extends Component { // eslint-disable-line react/prefer-stateless-function
+class SurveyView extends Component { // eslint-disable-line
 
   constructor(props) {
     super(props);
@@ -35,8 +35,7 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
       const response = await fetch(`${questionPath}${question}`);
       const data = await response.json();
       this.initLocalStore(data.id);
-      this.setState({ //eslint-disable-line
-        seeingQuestion: true,
+      this.setState({
         qid: data.id,
         entireQstn: data
       });
@@ -60,12 +59,30 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
   }
 
   navigateQuestion = (prev) => {
-    const { qIndex } = this.state;
+    const { qIndex, userProgress } = this.state;
     this.setState({
       qIndex: qIndex + (prev ? -1 : 1)
     }, () => {
       this.getEachQuestion();
     });
+    if (!prev) {
+      // const captureInput = {
+      //   qIndex: qIndex + 1,
+
+      // }
+    }
+  }
+
+  captureInput = (e) => {
+    const { value, name, type } = e.target;
+    if (type !== 'checkbox') {
+      this.userInput = { [name]: value };
+    } else {
+      const prevVal = _.get(this.userInput, name, []);
+      prevVal.includes(value) && _.remove(prevVal, (v) => v === value) || prevVal.push(value);
+      this.userInput = { [name]: prevVal };
+    }
+    console.log(this.userInput);
   }
 
   render() {
@@ -84,7 +101,12 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
               question.options.map((opt, ind) => {
                 return (
                   <div key={ind}>
-                    <input type="radio" name={question.name} value={opt} />{opt}
+                    <input
+                      type="radio"
+                      name={question.name}
+                      value={opt}
+                      onChange={this.captureInput}
+                    />{opt}
                   </div>
                 );
               })
@@ -96,6 +118,7 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
                 rows="4"
                 cols="50"
                 name={question.name}
+                onChange={this.captureInput}
               >
               </textarea>
             }
@@ -105,7 +128,12 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
               question.options.map((opt, ind) => {
                 return (
                   <div key={ind}>
-                    <input type="checkbox" name={question.name} value={opt} />{opt}
+                    <input
+                      type="checkbox"
+                      onChange={this.captureInput}
+                      name={question.name}
+                      value={opt}
+                    />{opt}
                   </div>
                 );
               })
@@ -114,10 +142,10 @@ class SurveyView extends Component { // eslint-disable-line react/prefer-statele
               {question.optional &&
                 <button onClick={this.skipQuestion}> Skip </button>
               }
-              {qIndex > 0 &&
+              {qIndex > 0 && qIndex <= totalQstn &&
                 <button onClick={() => this.navigateQuestion(true)}> Previous </button>
               }
-              {qIndex < totalQstn &&
+              {qIndex <= totalQstn &&
                 <button onClick={() => this.navigateQuestion(false)}> Next </button>
               }
             </div>

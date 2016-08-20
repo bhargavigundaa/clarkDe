@@ -21,6 +21,7 @@
 		},
 		{
 			"type" : "checkbox",
+			"name" : "usageInfo",
 			"text" : "Mark All of them which is true for your car",
 			"options":[
 				"It's a preowned car",
