@@ -10,9 +10,7 @@ class SurveyView extends Component { // eslint-disable-line
 
   constructor(props) {
     super(props);
-    this.state = {
-      userProgress: {}
-    };
+    this.state = {};
   }
 
   async componentDidMount() {
@@ -34,7 +32,6 @@ class SurveyView extends Component { // eslint-disable-line
     if (question) {
       const response = await fetch(`${questionPath}${question}`);
       const data = await response.json();
-      this.initLocalStore(data.id);
       this.setState({
         qid: data.id,
         entireQstn: data
@@ -42,35 +39,47 @@ class SurveyView extends Component { // eslint-disable-line
     }
   }
 
-  initLocalStore(qId) {
+  initLocalStore = () => {
     const initState = {
-      id: qId,
-      started: false
+      id: this.state.qid,
+      userProgress: []
     };
-    localStorage.setItem(`${QUESTION_LOCAL}-${qId}`, JSON.stringify(initState));
+    this.storeKey = `${QUESTION_LOCAL}-${this.state.qid}`;
+    localStorage.setItem(this.storeKey, JSON.stringify(initState));
   }
 
   startSurvey = () => {
     this.setState({
       qIndex: 0
     }, () => {
+      this.initLocalStore();
       this.getEachQuestion();
     });
   }
 
   navigateQuestion = (prev) => {
-    const { qIndex, userProgress } = this.state;
+    let { qIndex } = this.state;
+    const captureInput = {
+      qIndex,
+      userInput: this.userInput
+    };
+
+    let prevState = localStorage.getItem(this.storeKey);
+    prevState = JSON.parse(prevState);
+    const userProgress = prevState.userProgress;
+
+    _.remove(userProgress, (eachInp) => eachInp.qIndex === qIndex);
+    userProgress.push(captureInput);
+    prevState = { ...prevState, userProgress };
+
+    localStorage.setItem(this.storeKey, JSON.stringify(prevState));
+
+    qIndex = qIndex + (prev ? -1 : 1);
     this.setState({
-      qIndex: qIndex + (prev ? -1 : 1)
+      qIndex
     }, () => {
       this.getEachQuestion();
     });
-    if (!prev) {
-      // const captureInput = {
-      //   qIndex: qIndex + 1,
-
-      // }
-    }
   }
 
   captureInput = (e) => {
@@ -82,7 +91,6 @@ class SurveyView extends Component { // eslint-disable-line
       prevVal.includes(value) && _.remove(prevVal, (v) => v === value) || prevVal.push(value);
       this.userInput = { [name]: prevVal };
     }
-    console.log(this.userInput);
   }
 
   render() {
