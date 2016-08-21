@@ -160,7 +160,6 @@ class SurveyView extends Component { // eslint-disable-line
               question.type === 'textarea' &&
               <textarea
                 rows="4"
-                cols="50"
                 name={question.name}
                 onChange={this.captureInput}
                 className={s.title}
