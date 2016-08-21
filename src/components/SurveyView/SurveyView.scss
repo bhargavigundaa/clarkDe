@@ -26,6 +26,13 @@
 	//margin: auto;
 }
 
+.progress{
+	float: right;
+	right: 40px;
+	padding-top: 0.7rem;
+	color: $MidnightBlue;
+}
+
 .mainButton, .secondButton {
     color: $White;
     border-radius: 4px;
