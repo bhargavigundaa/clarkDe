@@ -8,13 +8,13 @@
 }
 
 .heading {
-    font-size: 3rem;
+    font-size: 2.2rem;
     padding-bottom: 30px
 }
 
 .title {
     padding-top: 10px;
-    font-size: 2rem
+    font-size: 1.9rem
 }
 
 .desc {
@@ -34,4 +34,28 @@
 
 .secondButton{
 	background: $Sky;
+}
+
+.aniimL {
+    animation: leftAnim 0.5s forwards;
+    margin-left: -800px;
+}
+
+@keyframes leftAnim {
+    100% { 
+    	margin-left: 0;
+    	animation-timing-function: ease-in;
+    }
+}
+
+.animR {
+    animation: rightAnim 0.5s forwards;
+    margin-left: 800px;
+}
+
+@keyframes rightAnim {
+    100% { 
+    	margin-left: 0;
+    	animation-timing-function: ease-in;
+    }
 }

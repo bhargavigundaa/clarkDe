@@ -66,6 +66,17 @@ class SurveyView extends Component { // eslint-disable-line
       userInput: this.userInput
     };
 
+    const animName = prev ? 'animR' : 'animL';
+    this.setState({
+      [animName]: true
+    });
+
+    setTimeout(() => {
+      this.setState({
+        [animName]: false
+      });
+    }, 500);
+
     let prevState = localStorage.getItem(this.storeKey);
     prevState = JSON.parse(prevState);
     const userProgress = prevState.userProgress;
@@ -105,11 +116,12 @@ class SurveyView extends Component { // eslint-disable-line
       headers: reqHeader
     }).then((response) => {
       if (!response.ok) {
-        alert('Couldn\'t submit the survey . Please try again');
+        alert('Couldn\'t submit the survey . Please try again'); //eslint-disable-line
         return false;
       }
       localStorage.removeItem(this.storeKey);
-      alert(' Survey submitted successfully');
+      alert(' Survey submitted successfully'); //eslint-disable-line
+      return true;
     });
   }
 
@@ -118,7 +130,11 @@ class SurveyView extends Component { // eslint-disable-line
     const { question = {} } = this.state;
 
     return (
-      <div className={s.container}>
+      <div
+        className={
+          `${s.container} ${this.state.animR ? s.animR : this.state.animL ? s.animR : null}` //eslint-disable-line
+        }
+      >
         {
           qIndex >= 0 ?
           <div>
