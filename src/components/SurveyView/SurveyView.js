@@ -11,7 +11,9 @@ class SurveyView extends Component { // eslint-disable-line
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      userProgress: []
+    };
   }
 
   async componentDidMount() {
@@ -67,6 +69,34 @@ class SurveyView extends Component { // eslint-disable-line
       userInput: this.userInput
     };
 
+    // User userInput is falsy , that means , user just navigating without input
+    // Dont do any state modification.
+    if (this.userInput) {
+      let prevState = localStorage.getItem(this.storeKey);
+      prevState = JSON.parse(prevState);
+      const userProgress = prevState.userProgress;
+
+
+      _.remove(userProgress, (eachInp) => eachInp.qIndex === qIndex);
+      userProgress.push(captureInput);
+      prevState = { ...prevState, userProgress };
+      console.log(prevState);
+      localStorage.setItem(this.storeKey, JSON.stringify(prevState));
+    }
+
+    // Get next question to show it in view - start
+    qIndex = qIndex + (prev ? -1 : 1);
+    this.setState({
+      qIndex
+    }, () => {
+      this.getEachQuestion();
+    });
+    // Get next question to show it in view - End
+
+    // navigated to next question, so reset User input
+    this.userInput = null;
+
+    // Animation class Changes start
     const animName = prev ? 'animL' : 'animR';
     this.setState({
       [animName]: true
@@ -77,23 +107,7 @@ class SurveyView extends Component { // eslint-disable-line
         [animName]: false
       });
     }, 200);
-
-    let prevState = localStorage.getItem(this.storeKey);
-    prevState = JSON.parse(prevState);
-    const userProgress = prevState.userProgress;
-
-    _.remove(userProgress, (eachInp) => eachInp.qIndex === qIndex);
-    userProgress.push(captureInput);
-    prevState = { ...prevState, userProgress };
-    console.log(prevState);
-    localStorage.setItem(this.storeKey, JSON.stringify(prevState));
-
-    qIndex = qIndex + (prev ? -1 : 1);
-    this.setState({
-      qIndex
-    }, () => {
-      this.getEachQuestion();
-    });
+    // Animation class Changes end
   }
 
   captureInput = (e) => {
