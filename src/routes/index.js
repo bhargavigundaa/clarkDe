@@ -3,7 +3,7 @@ import App from '../components/App';
 
 // Child routes
 import home from './home';
-import error from './error';
+import landing from './landing';
 
 export default {
 
@@ -11,7 +11,7 @@ export default {
 
   children: [
     home,
-    error
+    landing
   ],
 
 
