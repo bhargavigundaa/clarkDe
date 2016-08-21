@@ -118,17 +118,17 @@ class SurveyView extends Component { // eslint-disable-line
     const { question = {} } = this.state;
 
     return (
-      <div className={s.footerInfo}>
+      <div className={s.container}>
         {
           qIndex >= 0 ?
           <div>
-            <div> {question.text} </div>
+            <div className={s.heading}> {question.text} </div>
             {
               // Radio Button
               question.type === 'radio' &&
               question.options.map((opt, ind) => {
                 return (
-                  <div key={ind}>
+                  <div className={s.title} key={ind}>
                     <input
                       type="radio"
                       name={question.name}
@@ -147,6 +147,7 @@ class SurveyView extends Component { // eslint-disable-line
                 cols="50"
                 name={question.name}
                 onChange={this.captureInput}
+                className={s.title}
               >
               </textarea>
             }
@@ -155,7 +156,7 @@ class SurveyView extends Component { // eslint-disable-line
               question.type === 'checkbox' &&
               question.options.map((opt, ind) => {
                 return (
-                  <div key={ind}>
+                  <div key={ind} className={s.title}>
                     <input
                       type="checkbox"
                       onChange={this.captureInput}
@@ -168,28 +169,34 @@ class SurveyView extends Component { // eslint-disable-line
             }
             <div>
               {question.optional &&
-                <button onClick={this.skipQuestion}> Skip </button>
+                <button className={s.secondButton} onClick={this.skipQuestion}> Skip </button>
               }
               {qIndex > 0 && qIndex <= totalQstn &&
-                <button onClick={() => this.navigateQuestion(true)}> Previous </button>
+                <button className={s.secondButton} onClick={() => this.navigateQuestion(true)}>
+                  Previous
+                </button>
               }
               {qIndex <= totalQstn &&
-                <button onClick={() => this.navigateQuestion(false)}> Next </button>
+                <button className={s.mainButton} onClick={() => this.navigateQuestion(false)}>
+                 Next
+                </button>
               }
               {qIndex > totalQstn &&
-                <div>
-                  <div> You have successfully completed the survey</div>
-                  <button onClick={this.handleSubmit}> Submit </button>
+                <div className={s.container}>
+                  <div className={s.heading}> You have successfully completed the survey</div>
+                  <button className={s.mainButton} onClick={this.handleSubmit}> Submit </button>
                 </div>
               }
             </div>
           </div>
           :
-          <div>
-            <div> Welcome to Clark.de survey </div>
-            <div> {entireQstn.title} </div>
-            <div> {entireQstn.desc} </div>
-            <button onClick={this.startSurvey}>Start Survey</button>
+          <div className={s.container}>
+            <div className={s.heading}>
+              Please Take The Following Survey to help us Understand your need
+            </div>
+            <div className={s.title}> Title : {entireQstn.title} </div>
+            <div className={s.desc}> Description: {entireQstn.desc} </div>
+            <button className={s.mainButton} onClick={this.startSurvey}>Start Survey</button>
           </div>
         }
       </div>
