@@ -6,12 +6,13 @@ class Header extends Component { // eslint-disable-line react/prefer-stateless-f
   render() {
     return (
       <div className={s.header}>
-        <div className={s.logoInfo}></div>
+        <div className={s.logoInfo}>
+        </div>
         <div className={s.heading}>
           Clark Survey App
         </div>
         <div className={s.userName}>
-          Hi, Steffen
+          Hi Steffen
         </div>
       </div>
     );

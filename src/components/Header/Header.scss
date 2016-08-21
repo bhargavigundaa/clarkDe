@@ -1,24 +1,29 @@
 @import '../variables.scss';
 
 .header {
-  position: relative;
-  // width: 100%;
   height: 74px;
   background: $White;
   border-bottom: 1px solid $PattensBlue;
+  color: $MidnightBlue;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
 
 .logoInfo{
-  // width: 3%;
+  background: url('../../public/assets/logo.png');
+  background-size: cover;
+  height: 74px;
+  max-width: 72px;
+  min-width: 72px;
 }
 
 .heading{
-  // width: 90%;
-  // margin: auto;
+  font-size: 2.5rem;
+  
 }
 
 .userName{
-  // width: 7%;
+ font-size: 1.5rem;
 }
