@@ -122,7 +122,7 @@ class SurveyView extends Component { // eslint-disable-line
       }
       localStorage.removeItem(this.storeKey);
       this.setState({ success: true });
-      setTimeout(() => history.push('/'), 2000);
+      setTimeout(() => history.push('/'), 1500);
       return true;
     });
   }
