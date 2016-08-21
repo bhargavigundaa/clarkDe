@@ -179,6 +179,13 @@ class SurveyView extends Component { // eslint-disable-line
                       name={question.name}
                       value={opt}
                       onChange={this.captureInput}
+                      checked={
+                                (() => {
+                                  return _.get(
+                                    _.find(userProgress, inp => inp.qIndex === qIndex),
+                                    `userInput.${question.name}`) === opt;
+                                })()
+                              }
                     />{opt}
                   </div>
                 );
