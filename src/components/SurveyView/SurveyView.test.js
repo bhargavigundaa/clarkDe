@@ -2,41 +2,55 @@
 /* eslint-disable padded-blocks, no-unused-expressions */
 
 import React from 'react';
-import { shallow } from 'enzyme';
 import { expect } from 'chai';
+import { shallow } from 'enzyme';
+import { SurveyView } from './SurveyView';
 import { Provider } from 'react-redux';
-import AppContainer from './AppContainer';
 
 // eslint-disable-next-line no-underscore-dangle
 global.__DEV__ = true;
+describe('SurveyView', () => {
+  const props = {
+  };
 
-describe('Component: <AppContainer />', () => {
-  it('shallow render of AppContainer length', () => {
+  it('should shallow render', () => {
     const wrapper = shallow(
       <Provider
         store={{ insertCss: () => {}, subscribe: () => {},
         dispatch: () => {}, getState: () => {} }}
       >
-        <div>
-          <AppContainer />
+        <div><SurveyView {...props} />
         </div>
       </Provider>
     );
-    expect(wrapper.length).to.be.equal(1);
+    expect(wrapper.length).to.be.equal(1); // Shallow wrapper is formed
     expect(wrapper.children().length).to.equal(1); // Shallow wrapper returns only one child
   });
-
-  it('Should have children props', () => {
+  it('Should have props of SurveyView', () => {
     const wrapper = shallow(
       <Provider
         store={{ insertCss: () => {}, subscribe: () => {},
         dispatch: () => {}, getState: () => {} }}
       >
         <div>
-          <AppContainer />
+          <SurveyView />
         </div>
       </Provider>
     );
-    expect(wrapper.props()).to.be.defined;
+    expect(wrapper.props().expandSearch).to.be.defined;
   });
+  it('Should have <div> tag', () => {
+    const wrapper = shallow(
+      <Provider
+        store={{ insertCss: () => {}, subscribe: () => {},
+        dispatch: () => {}, getState: () => {} }}
+      >
+        <div>
+          <SurveyView />
+        </div>
+      </Provider>
+    );
+    expect(wrapper.find('div').length).to.be.equal(1);
+  });
+
 });
