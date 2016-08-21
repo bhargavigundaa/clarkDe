@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { QUESTION_LOCAL, Q_KEY } from '../../constants';
-import { questionPath } from '../../core/urls';
+import { questionPath, answerPath } from '../../core/urls';
 import s from './SurveyView.scss';
 import fetch from '../../core/fetch';
 import _ from 'lodash';
@@ -28,13 +28,14 @@ class SurveyView extends Component { // eslint-disable-line
   }
 
    fetchAllQuestions = async () => {
-    const question = window.location.pathname.split('/')[2];
-    if (question) {
-      const response = await fetch(`${questionPath}${question}`);
+    const qstnHash = window.location.pathname.split('/')[2];
+    if (qstnHash) {
+      const response = await fetch(`${questionPath}${qstnHash}`);
       const data = await response.json();
       this.setState({
         qid: data.id,
-        entireQstn: data
+        entireQstn: data,
+        qstnHash
       });
     }
   }
@@ -42,7 +43,8 @@ class SurveyView extends Component { // eslint-disable-line
   initLocalStore = () => {
     const initState = {
       id: this.state.qid,
-      userProgress: []
+      userProgress: [],
+      qIndex: 0
     };
     this.storeKey = `${QUESTION_LOCAL}-${this.state.qid}`;
     localStorage.setItem(this.storeKey, JSON.stringify(initState));
@@ -91,6 +93,17 @@ class SurveyView extends Component { // eslint-disable-line
       prevVal.includes(value) && _.remove(prevVal, (v) => v === value) || prevVal.push(value);
       this.userInput = { [name]: prevVal };
     }
+  }
+
+  handleSubmit = () => {
+    const reqHeader = new Headers();
+    reqHeader.append('Content-Type', 'application/json');
+    const data = localStorage.getItem(this.storeKey);
+    fetch(`${answerPath}${this.state.qstnHash}`, {
+      method: 'POST',
+      body: data,
+      headers: reqHeader
+    });
   }
 
   render() {
@@ -155,6 +168,12 @@ class SurveyView extends Component { // eslint-disable-line
               }
               {qIndex <= totalQstn &&
                 <button onClick={() => this.navigateQuestion(false)}> Next </button>
+              }
+              {qIndex > totalQstn &&
+                <div>
+                  <div> You have successfully completed the survey</div>
+                  <button onClick={this.handleSubmit}> Submit </button>
+                </div>
               }
             </div>
           </div>
