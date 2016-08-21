@@ -165,7 +165,9 @@ class SurveyView extends Component { // eslint-disable-line
           qIndex >= 0 ?
           <div className={s.flexItem}>
             <div className={s.progress}>
-              Progress {`${this.state.qIndex + 1} / ${this.state.totalQstn + 1}`}
+              {qIndex <= totalQstn &&
+                <span> Progress {`${qIndex + 1} / ${totalQstn + 1}`} </span>
+              }
             </div>
             <div className={s.heading}> {question.text} </div>
             {
