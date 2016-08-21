@@ -66,7 +66,7 @@ class SurveyView extends Component { // eslint-disable-line
       userInput: this.userInput
     };
 
-    const animName = prev ? 'animR' : 'animL';
+    const animName = prev ? 'animL' : 'animR';
     this.setState({
       [animName]: true
     });
@@ -75,7 +75,7 @@ class SurveyView extends Component { // eslint-disable-line
       this.setState({
         [animName]: false
       });
-    }, 500);
+    }, 200);
 
     let prevState = localStorage.getItem(this.storeKey);
     prevState = JSON.parse(prevState);
@@ -132,12 +132,12 @@ class SurveyView extends Component { // eslint-disable-line
     return (
       <div
         className={
-          `${s.container} ${this.state.animR ? s.animR : this.state.animL ? s.animR : null}` //eslint-disable-line
+          `${s.container} ${this.state.animR ? s.animR : this.state.animL ? s.animL : ''}` //eslint-disable-line
         }
       >
         {
           qIndex >= 0 ?
-          <div>
+          <div className={s.flexItem}>
             <div className={s.heading}> {question.text} </div>
             {
               // Radio Button

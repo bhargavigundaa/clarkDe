@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 10px 20px;
+    padding: 10px 20px 0 50px;
 }
 
 .heading {
@@ -22,6 +22,10 @@
     font-size: 1.4rem;
 }
 
+.flexItem{
+	//margin: auto;
+}
+
 .mainButton, .secondButton {
     color: $White;
     border-radius: 4px;
@@ -36,7 +40,7 @@
 	background: $Sky;
 }
 
-.aniimL {
+.animL {
     animation: leftAnim 0.5s forwards;
     margin-left: -800px;
 }
