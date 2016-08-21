@@ -1,70 +1,24 @@
 @import '../variables.scss';
 
-@mixin vertical-align {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .header {
   position: relative;
-  width: 100%;
+  // width: 100%;
   height: 74px;
-  float: left;
-  padding: 0 4%;
   background: $White;
   border-bottom: 1px solid $PattensBlue;
-  min-width: 1000px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.menuInfo {
-  float: left;
-
-  @include vertical-align;
-  margin: 2px 3% 0 0;
-
-  i {
-    font-size: 1.8rem;
-    color: $Charcoal;
-    cursor: pointer;
-  }
+.logoInfo{
+  // width: 3%;
 }
 
-.logoInfo {
-  float: left;
-  cursor: pointer;
-
-  @include vertical-align;
-  margin-right: 3%;
-  outline: none;
-  text-decoration: none;
-
-  i {
-    font-size: 2.3rem;
-  }
+.heading{
+  // width: 90%;
+  // margin: auto;
 }
 
-.topRightInfo {
-  float: right;
-  width: 348px;
-  position: relative;
-  margin-top: 29px;
-}
-
-@media (max-width: 1024px) {
-  .header {
-    width: 1024px;
-  }
-
-  .topRightInfo {
-    width: 38%;
-  }
-
-  .menuInfo {
-    margin: 2px 5% 0 0;
-  }
-
-  .logoInfo {
-    margin-right: 5%;
-  }
+.userName{
+  // width: 7%;
 }

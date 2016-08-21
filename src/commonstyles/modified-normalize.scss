@@ -15,7 +15,6 @@ body {
   font-weight: 400;
   line-height: 1.5;
   background: #f3f7f8;
-  min-width: 1000px;
 }
 
 hr {
@@ -60,22 +59,6 @@ strong {
 b,
 strong {
   font-weight: bolder;
-}
-
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-
-sub {
-  bottom: -0.25em;
-}
-
-sup {
-  top: -0.5em;
 }
 
 img {

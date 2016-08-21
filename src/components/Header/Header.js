@@ -1,50 +1,20 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Header.scss';
-import { connect } from 'react-redux';
-// import _ from 'lodash';
 
 class Header extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { header, menuInfo, logoInfo, topRightInfo } = s;
     return (
-      <div className={header}>
-        <div className={menuInfo}>
-          <span
-            className={'iconMenu iconSp cursor'}
-          >
-          </span>
+      <div className={s.header}>
+        <div className={s.logoInfo}></div>
+        <div className={s.heading}>
+          Clark Survey App
         </div>
-        <div
-          className={logoInfo}
-          target="_self"
-        >
-          <span className={'iconPaytm iconSp'}>
-          </span>
-        </div>
-        <div className={topRightInfo}>
+        <div className={s.userName}>
+          Hi, Steffen
         </div>
       </div>
     );
   }
 }
-
-Header.contextTypes = { store: PropTypes.object.isRequired };
-
-Header.propTypes = {
-
-};
-
-
-export default withStyles(s)(connect(({ a }) => {
-    return {
-      a
-    };
-  },
-  (dispatch) => {
-    return {
-      a: () => {
-        dispatch(null);
-      }
-    };
-  })(Header));
+export default withStyles(s)(Header);
