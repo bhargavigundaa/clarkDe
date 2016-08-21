@@ -250,7 +250,9 @@ class SurveyView extends Component { // eslint-disable-line
               {qIndex > totalQstn &&
                 <div className={s.container}>
                   <div className={s.heading}> You have successfully completed the survey</div>
-                  <div className={s.success}> {this.state.success && 'Suvey successfully submitted...'} </div>
+                  <div className={s.success}>
+                    {this.state.success && 'Suvey successfully submitted...'}
+                  </div>
                   <button className={s.mainButton} onClick={this.handleSubmit}> Submit </button>
                 </div>
               }

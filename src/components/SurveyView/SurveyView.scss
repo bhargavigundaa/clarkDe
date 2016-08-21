@@ -1,76 +1,76 @@
 @import '../variables.scss';
-.container, .emptyContainer {
-    color: $Gray14;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px 20px 0 50px;
+
+.container,
+.emptyContainer {
+  color: $Gray14;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 20px 0 50px;
 }
 
 .heading {
-    font-size: 2.2rem;
-    padding-bottom: 30px
+  font-size: 2.2rem;
+  padding-bottom: 30px;
 }
 
 .title {
-    padding-top: 10px;
-    font-size: 1.9rem
+  padding-top: 10px;
+  font-size: 1.9rem;
 }
 
-.desc, .success {
-    padding: 30px 0;
-    font-size: 1.4rem;
+.desc,
+.success {
+  padding: 30px 0;
+  font-size: 1.4rem;
 }
 
-.success{
-    color : $Green;
+.success {
+  color: $Green;
 }
 
-.flexItem{
-	//margin: auto;
+.progress {
+  float: right;
+  right: 40px;
+  padding-top: 0.7rem;
+  color: $MidnightBlue;
 }
 
-.progress{
-	float: right;
-	right: 40px;
-	padding-top: 0.7rem;
-	color: $MidnightBlue;
+.mainButton,
+.secondButton {
+  color: $White;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background: $Green;
+  width: 150px;
+  height: 40px;
+  margin: 20px 30px 0 0;
 }
 
-.mainButton, .secondButton {
-    color: $White;
-    border-radius: 4px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    background: $Green;
-    width: 150px;
-    height: 40px;
-    margin: 20px 30px 0 0;
-}
-
-.secondButton{
-	background: $Sky;
+.secondButton {
+  background: $Sky;
 }
 
 .animL {
-    animation: leftAnim 0.5s forwards;
-    margin-left: -800px;
+  animation: leftAnim 0.5s forwards;
+  margin-left: -800px;
 }
 
 @keyframes leftAnim {
-    100% { 
-    	margin-left: 0;
-    	animation-timing-function: ease-in;
-    }
+  100% {
+    margin-left: 0;
+    animation-timing-function: ease-in;
+  }
 }
 
 .animR {
-    animation: rightAnim 0.5s forwards;
-    margin-left: 800px;
+  animation: rightAnim 0.5s forwards;
+  margin-left: 800px;
 }
 
 @keyframes rightAnim {
-    100% { 
-    	margin-left: 0;
-    	animation-timing-function: ease-in;
-    }
+  100% {
+    margin-left: 0;
+    animation-timing-function: ease-in;
+  }
 }

@@ -12,7 +12,7 @@ module.exports = function apiproxy(app) {
   });
 
   app.post('/api/answers/:id', (req, res) => {
-    console.log(req.body);
+    console.log(req.body); //eslint-disable-line
     res.sendStatus(200);
   });
 };
