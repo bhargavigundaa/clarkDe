@@ -199,6 +199,13 @@ class SurveyView extends Component { // eslint-disable-line
                 name={question.name}
                 onChange={this.captureInput}
                 className={s.title}
+                value={
+                        (() => {
+                          return _.get(
+                            _.find(userProgress, inp => inp.qIndex === qIndex),
+                            `userInput.${question.name}`);
+                        })()
+                      }
               >
               </textarea>
             }
