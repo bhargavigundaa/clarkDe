@@ -102,15 +102,20 @@ class SurveyView extends Component { // eslint-disable-line
 
   captureInput = (e) => {
     const { value, name, type } = e.target;
+    const { userProgress, qIndex } = this.state;
+
     if (type !== 'checkbox') {
       this.userInput = { [name]: value };
     } else {
+      this.userInput = _.get(_.find(userProgress, inp => inp.qIndex === qIndex), 'userInput', []);
       const prevVal = _.get(this.userInput, name, []);
-      prevVal.includes(value) && _.remove(prevVal, (v) => v === value) || prevVal.push(value);
+      if (prevVal.includes(value)) {
+        _.remove(prevVal, (v) => v === value);
+      } else {
+        prevVal.push(value);
+      }
       this.userInput = { [name]: prevVal };
     }
-
-    const { qIndex } = this.state;
     const captureInput = {
       qIndex,
       userInput: this.userInput
@@ -118,8 +123,6 @@ class SurveyView extends Component { // eslint-disable-line
 
     let prevState = localStorage.getItem(this.storeKey);
     prevState = JSON.parse(prevState);
-    const userProgress = prevState.userProgress;
-
     _.remove(userProgress, (eachInp) => eachInp.qIndex === qIndex);
     userProgress.push(captureInput);
     prevState = { ...prevState, userProgress };
