@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { QUESTION_LOCAL, Q_KEY } from '../../constants';
 import { questionPath, answerPath } from '../../core/urls';
+import history from '../../core/history';
 import s from './SurveyView.scss';
 import fetch from '../../core/fetch';
 import _ from 'lodash';
@@ -120,7 +121,8 @@ class SurveyView extends Component { // eslint-disable-line
         return false;
       }
       localStorage.removeItem(this.storeKey);
-      alert(' Survey submitted successfully'); //eslint-disable-line
+      this.setState({ success: true });
+      setTimeout(() => history.push('/'), 2000);
       return true;
     });
   }
@@ -184,9 +186,6 @@ class SurveyView extends Component { // eslint-disable-line
               })
             }
             <div>
-              {question.optional &&
-                <button className={s.secondButton} onClick={this.skipQuestion}> Skip </button>
-              }
               {qIndex > 0 && qIndex <= totalQstn &&
                 <button className={s.secondButton} onClick={() => this.navigateQuestion(true)}>
                   Previous
@@ -200,6 +199,7 @@ class SurveyView extends Component { // eslint-disable-line
               {qIndex > totalQstn &&
                 <div className={s.container}>
                   <div className={s.heading}> You have successfully completed the survey</div>
+                  <div className={s.success}> {this.state.success && 'Suvey successfully submitted...'} </div>
                   <button className={s.mainButton} onClick={this.handleSubmit}> Submit </button>
                 </div>
               }

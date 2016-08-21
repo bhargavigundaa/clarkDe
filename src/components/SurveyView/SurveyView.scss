@@ -17,9 +17,13 @@
     font-size: 1.9rem
 }
 
-.desc {
+.desc, .success {
     padding: 30px 0;
     font-size: 1.4rem;
+}
+
+.success{
+    color : $Green;
 }
 
 .flexItem{
