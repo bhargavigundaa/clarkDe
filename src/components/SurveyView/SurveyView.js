@@ -73,7 +73,7 @@ class SurveyView extends Component { // eslint-disable-line
     _.remove(userProgress, (eachInp) => eachInp.qIndex === qIndex);
     userProgress.push(captureInput);
     prevState = { ...prevState, userProgress };
-
+    console.log(prevState);
     localStorage.setItem(this.storeKey, JSON.stringify(prevState));
 
     qIndex = qIndex + (prev ? -1 : 1);
@@ -103,6 +103,13 @@ class SurveyView extends Component { // eslint-disable-line
       method: 'POST',
       body: data,
       headers: reqHeader
+    }).then((response) => {
+      if (!response.ok) {
+        alert('Couldn\'t submit the survey . Please try again');
+        return false;
+      }
+      localStorage.removeItem(this.storeKey);
+      alert(' Survey submitted successfully');
     });
   }
 
