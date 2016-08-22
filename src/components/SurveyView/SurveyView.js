@@ -126,6 +126,7 @@ class SurveyView extends Component { // eslint-disable-line
     _.remove(userProgress, (eachInp) => eachInp.qIndex === qIndex);
     userProgress.push(captureInput);
     prevState = { ...prevState, userProgress };
+    console.log(userProgress);
     localStorage.setItem(this.storeKey, JSON.stringify(prevState));
     // Also store userprogress so that , retrieve the value easily in render.
     this.setState({ userProgress });
@@ -154,7 +155,7 @@ class SurveyView extends Component { // eslint-disable-line
   render() {
     const { entireQstn = {}, qIndex, totalQstn, userProgress } = this.state;
     const { question = {} } = this.state;
-
+    const thisProgress = _.find(userProgress, inp => inp.qIndex === qIndex);
     return (
       <div
         className={
@@ -181,13 +182,7 @@ class SurveyView extends Component { // eslint-disable-line
                       name={question.name}
                       value={opt}
                       onChange={this.captureInput}
-                      checked={
-                                (() => {
-                                  return _.get(
-                                    _.find(userProgress, inp => inp.qIndex === qIndex),
-                                    `userInput.${question.name}`) === opt;
-                                })()
-                              }
+                      checked={ (() => _.get(thisProgress, `userInput.${question.name}`) === opt)()}
                     />{opt}
                   </div>
                 );
@@ -201,13 +196,7 @@ class SurveyView extends Component { // eslint-disable-line
                 name={question.name}
                 onChange={this.captureInput}
                 className={s.title}
-                value={
-                        (() => {
-                          return _.get(
-                            _.find(userProgress, inp => inp.qIndex === qIndex),
-                            `userInput.${question.name}`);
-                        })()
-                      }
+                value={(() => _.get(thisProgress, `userInput.${question.name}`))()}
               >
               </textarea>
             }
@@ -224,10 +213,7 @@ class SurveyView extends Component { // eslint-disable-line
                       value={opt}
                       checked={
                                 (() => {
-                                  return _.get(
-                                    _.find(userProgress, inp => inp.qIndex === qIndex),
-                                    `userInput.${question.name}`, []
-                                  )
+                                  return _.get(thisProgress, `userInput.${question.name}`, [])
                                   .includes(opt);
                                 })()
                               }
@@ -243,6 +229,7 @@ class SurveyView extends Component { // eslint-disable-line
                 </button>
               }
               {qIndex <= totalQstn &&
+
                 <button className={s.mainButton} onClick={() => this.navigateQuestion(false)}>
                  Next
                 </button>
