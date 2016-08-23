@@ -12,7 +12,13 @@ function LandingPage({error}, context) { // eslint-disable-line
     <div className={s.container}>
       <div className={s.title}> Welcome to Clark.de survey App </div>
       <div className={s.desc}>
-        Try <Link to="/question/1"> Survey1 </Link> or <Link to="/question/2"> Survey2 </Link>
+        Try one of these
+        <div className={s.surveylink}>
+          <Link to="/question/1"> Survey 1 - Car Insurance </Link>
+        </div>
+        <div className={s.surveylink}>
+          <Link to="/question/2"> Survey 2 - Home Insurance</Link>
+        </div>
       </div>
     </div>
   );

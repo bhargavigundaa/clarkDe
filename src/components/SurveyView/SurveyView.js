@@ -169,7 +169,7 @@ export class SurveyView extends Component { // eslint-disable-line
           <div className={s.flexItem}>
             <div className={s.progress}>
               {qIndex <= totalQstn &&
-                <span> Progress {`${qIndex + 1} / ${totalQstn + 1}`} </span>
+                <span> Step {`${qIndex + 1} / ${totalQstn + 1}`} </span>
               }
             </div>
             <div className={s.heading}> {question.text} </div>

@@ -1,5 +1,4 @@
 @import '../../components/variables.scss';
-
 .container {
   color: $Gray14;
   display: flex;
@@ -18,16 +17,28 @@
 
 .title {
   padding-top: 10px;
-  font-size: 1.9rem;
+  font-size: 2.1rem;
 }
 
 .desc {
   padding: 30px 0;
-  font-size: 1.4rem;
+  font-size: 1.9rem;
+}
+
+.surveylink {
+  padding: 10px;
+  border: 1px solid $Sky;
+  margin: 20px 30px 30px 0;
+  width: 20%;
+  color: $Gray14 !important;
 }
 
 @media (max-width: 860px) {
   .container {
     padding: 5px;
+  }
+  .surveylink{
+    margin: 30px 70px 30px 0;
+    width: auto;
   }
 }
