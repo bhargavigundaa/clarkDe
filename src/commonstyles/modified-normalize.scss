@@ -175,3 +175,9 @@ fieldset {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+@media (max-width: 860px) {
+  html {
+    font-size: 44.5%;
+  }
+}

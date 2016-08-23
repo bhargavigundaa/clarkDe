@@ -79,3 +79,10 @@
     animation-timing-function: ease-in;
   }
 }
+
+@media (max-width: 860px) {
+  .container, 
+  .emptyContainer {
+    padding: 5px;
+  }
+}
