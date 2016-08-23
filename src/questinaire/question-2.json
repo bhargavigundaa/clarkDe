@@ -1,7 +1,46 @@
 {
-	"id": "2",
-	"name" : "Bye",
-	"title" : "Survey for Car insurance | Steffen Glomb | BMW B series",
-	"desc" : "Question paper2"
-
+  "id": "2",
+  "title": "Home Insurance Survey | Villa | 5 bedroom",
+  "desc": "This survey will help us assess your insurance need for your condomium",
+  "questions": [{
+    "type": "radio",
+    "text": "Kindly tell us about your House usage",
+    "name": "HouseUsage",
+    "options": [
+      "Rent",
+      "Sharing",
+      "Occassion",
+      "Dont know"
+    ]
+  }, {
+    "optional": true,
+    "type": "textarea",
+    "name": "HouseDesc",
+    "text": "Provide a general description of your House"
+  }, {
+    "type": "checkbox",
+    "name": "usageInfo",
+    "text": "Mark All of them which is true for your House",
+    "options": [
+      "It's a preowned House",
+      "I don't have history of Crime",
+      "This House is only used by me",
+      "I'm planning to buy a new House this year"
+    ]
+  }, {
+    "type": "radio",
+    "optional": true,
+    "text": "Your Age",
+    "name": "OwnerrAge",
+    "options": [
+      "18-21 Years",
+      "22-30 Years",
+      "30-45 Years",
+      "> 45 Years"
+    ]
+  }, {
+    "type": "textarea",
+    "name": "insuranceNeed",
+    "text": "Provide your House insurance preferences"
+  }]
 }
