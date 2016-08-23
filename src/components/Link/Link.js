@@ -9,7 +9,7 @@ function isModifiedEvent(event) {
   return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 }
 
-class Link extends Component { // eslint-disable-line react/prefer-stateless-function
+export class Link extends Component { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
     to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
