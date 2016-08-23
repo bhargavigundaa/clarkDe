@@ -82,21 +82,19 @@ export class SurveyView extends Component { // eslint-disable-line
 
     // navigated to next question, so reset User input
     this.userInput = null;
-    this.performAnimation(prev);
+    this.performAnimation();
   }
 
-  performAnimation = (prev) => {
-    // Animation class Changes start
-    const animName = prev ? 'animL' : 'animR';
+  performAnimation = () => {
     this.setState({
-      [animName]: true
+      fadeIn: true
     });
 
     setTimeout(() => {
       this.setState({
-        [animName]: false
+        fadeIn: false
       });
-    }, 200);
+    }, 500);
     // Animation class Changes end
   }
 
@@ -159,11 +157,7 @@ export class SurveyView extends Component { // eslint-disable-line
     // Next button Enabled if userinput value in truthy
     const canNext = _.isArray(inputVal) ? inputVal[0] : inputVal;
     return (
-      <div
-        className={
-          `${s.container} ${this.state.animR ? s.animR : this.state.animL ? s.animL : ''}` //eslint-disable-line
-        }
-      >
+      <div className={`${s.container} ${this.state.fadeIn ? s.fadeIn : null}`}>
         {
           qIndex >= 0 ?
           <div className={s.flexItem}>

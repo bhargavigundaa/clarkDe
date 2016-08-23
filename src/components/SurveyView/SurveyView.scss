@@ -45,7 +45,6 @@
   width: 150px;
   height: 40px;
   margin: 20px 30px 0 0;
-
   &:disabled {
     opacity: 0.65;
     cursor: not-allowed;
@@ -56,37 +55,29 @@
   background: $Sky;
 }
 
-.animL {
-  animation: leftAnim 0.5s forwards;
-  margin-left: -800px;
+.fadeIn {
+  opacity: 0;
+  animation: fadeInAnim ease-in-out 1;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
 }
 
-@keyframes leftAnim {
-  100% {
-    margin-left: 0;
-    animation-timing-function: ease-in;
+@keyframes fadeInAnim {
+  from {
+    opacity: 0;
   }
-}
-
-.animR {
-  animation: rightAnim 0.5s forwards;
-  margin-left: 800px;
-}
-
-@keyframes rightAnim {
-  100% {
-    margin-left: 0;
-    animation-timing-function: ease-in;
+  to {
+    opacity: 1;
   }
 }
 
 @media (max-width: 860px) {
-  .container, 
+  .container,
   .emptyContainer {
     padding: 5px;
   }
   .mainButton,
-  .secondButton{
+  .secondButton {
     width: 115px;
   }
 }

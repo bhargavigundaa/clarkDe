@@ -50,16 +50,16 @@ describe('SurveyView', () => {
     const wrapper = shallow(<SurveyView />);
     wrapper.instance().navigateQuestion(true);
     expect(wrapper.state()).to.include({
-      animL: true,
+      fadeIn: true,
       totalQstn: -1
     });
   });
 
-  it('performAnimation Method should populate state animR right when passed false', () => {
+  it('performAnimation Method should populate state fadeIn', () => {
     const wrapper = shallow(<SurveyView />);
     wrapper.instance().performAnimation(false);
     expect(wrapper.state()).to.include({
-      animR: true
+      fadeIn: true
     });
   });
 
