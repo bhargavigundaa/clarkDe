@@ -3,54 +3,27 @@
 
 import React from 'react';
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { SurveyView } from './SurveyView';
-import { Provider } from 'react-redux';
 
 // eslint-disable-next-line no-underscore-dangle
 global.__DEV__ = true;
 describe('SurveyView', () => {
-  const props = {
-  };
 
-  it('should shallow render', () => {
-    const wrapper = shallow(
-      <Provider
-        store={{ insertCss: () => {}, subscribe: () => {},
-        dispatch: () => {}, getState: () => {} }}
-      >
-        <div><SurveyView {...props} />
-        </div>
-      </Provider>
-    );
+  it('SurveyView Component Should Exixts', () => {
+    const wrapper = shallow(<SurveyView />);
     expect(wrapper.length).to.be.equal(1); // Shallow wrapper is formed
     expect(wrapper.children().length).to.equal(1); // Shallow wrapper returns only one child
   });
-  it('Should have props of SurveyView', () => {
-    const wrapper = shallow(
-      <Provider
-        store={{ insertCss: () => {}, subscribe: () => {},
-        dispatch: () => {}, getState: () => {} }}
-      >
-        <div>
-          <SurveyView />
-        </div>
-      </Provider>
-    );
-    expect(wrapper.props().expandSearch).to.be.defined;
+
+  it('View Should have total 5 divs outside nested JSX', () => {
+    const wrapper = mount(<SurveyView />);
+    expect(wrapper.find('div').length).to.equal(5);
   });
-  it('Should have <div> tag', () => {
-    const wrapper = shallow(
-      <Provider
-        store={{ insertCss: () => {}, subscribe: () => {},
-        dispatch: () => {}, getState: () => {} }}
-      >
-        <div>
-          <SurveyView />
-        </div>
-      </Provider>
-    );
-    expect(wrapper.find('div').length).to.be.equal(1);
+
+  it('Initial state Should have blank userProgress Array', () => {
+    const wrapper = shallow(<SurveyView />);
+    expect(wrapper.state()).to.eql({ userProgress: [] }); // deep equal check with eql
   });
 
 });

@@ -7,7 +7,7 @@ import s from './SurveyView.scss';
 import fetch from '../../core/fetch';
 import _ from 'lodash';
 
-class SurveyView extends Component { // eslint-disable-line
+export class SurveyView extends Component { // eslint-disable-line
 
   constructor(props) {
     super(props);
