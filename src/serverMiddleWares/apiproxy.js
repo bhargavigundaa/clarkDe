@@ -15,7 +15,7 @@ module.exports = function apiproxy(app) {
 
   app.post('/api/answers/:id', (req, res) => {
     try {
-      console.log(JSON.stringify(req.body));
+      console.log(JSON.stringify(req.body)); //eslint-disable-line
     } catch (e) {
       res.sendStatus(500);
     }
