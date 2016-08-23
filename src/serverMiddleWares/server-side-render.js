@@ -1,5 +1,4 @@
 import configureStore from '../store/configureStore';
-// import { setRuntimeVariable } from '../actions';
 import ReactDOM from 'react-dom/server';
 import { match } from 'universal-router';
 import routes from '../routes';
