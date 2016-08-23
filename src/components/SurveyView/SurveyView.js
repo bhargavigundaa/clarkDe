@@ -126,7 +126,6 @@ class SurveyView extends Component { // eslint-disable-line
     _.remove(userProgress, (eachInp) => eachInp.qIndex === qIndex);
     userProgress.push(captureInput);
     prevState = { ...prevState, userProgress };
-    console.log(userProgress);
     localStorage.setItem(this.storeKey, JSON.stringify(prevState));
     // Also store userprogress so that , retrieve the value easily in render.
     this.setState({ userProgress });
@@ -156,6 +155,9 @@ class SurveyView extends Component { // eslint-disable-line
     const { entireQstn = {}, qIndex, totalQstn, userProgress } = this.state;
     const { question = {} } = this.state;
     const thisProgress = _.find(userProgress, inp => inp.qIndex === qIndex);
+    const inputVal = thisProgress && _.values(thisProgress.userInput)[0];
+    // Next button Enabled if userinput value in truthy
+    const canNext = _.isArray(inputVal) ? inputVal[0] : inputVal;
     return (
       <div
         className={
@@ -182,7 +184,7 @@ class SurveyView extends Component { // eslint-disable-line
                       name={question.name}
                       value={opt}
                       onChange={this.captureInput}
-                      checked={ (() => _.get(thisProgress, `userInput.${question.name}`) === opt)()}
+                      checked={(() => _.get(thisProgress, `userInput.${question.name}`) === opt)()}
                     />{opt}
                   </div>
                 );
@@ -230,7 +232,11 @@ class SurveyView extends Component { // eslint-disable-line
               }
               {qIndex <= totalQstn &&
 
-                <button className={s.mainButton} onClick={() => this.navigateQuestion(false)}>
+                <button
+                  className={s.mainButton}
+                  onClick={() => this.navigateQuestion(false)}
+                  disabled={!canNext && !question.optional}
+                >
                  Next
                 </button>
               }

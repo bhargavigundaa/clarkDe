@@ -1,34 +1,46 @@
 {
-	"id": "1",
-	"title" : "Survey for Car insurance | Steffen Glomb | BMW A series",
-	"desc" : "This survey will help us assess your insurance need for your BMW . It's a short survey about your car's make and condition.",
-	"questions" : [
-		{
-			"type" : "radio",
-			"text" : "Kindly tell us about your Car usage",
-			"name" : "CarUsage",
-			"options":[
-				"< 1000 KM per month",
-				"1000 - 2000 KM per month",
-				"3000 - 4000 KM per month",
-				"> 4000 KM per month"
-			]
-		},
-		{
-			"type" : "textarea",
-			"name" : "carDesc",
-			"text" : "Provide a general description of your car"
-		},
-		{
-			"type" : "checkbox",
-			"name" : "usageInfo",
-			"text" : "Mark All of them which is true for your car",
-			"options":[
-				"It's a preowned car",
-				"I don't have history of Road Accidents",
-				"This car is only used by me",
-				"I'm planning to buy a new car this year"
-			]
-		}
-	]
+  "id": "1",
+  "title": "Survey for Car insurance | Steffen Glomb | BMW A series",
+  "desc": "This survey will help us assess your insurance need for your BMW . It's a short survey about your car's make and condition.",
+  "questions": [{
+    "type": "radio",
+    "text": "Kindly tell us about your Car usage",
+    "name": "CarUsage",
+    "options": [
+      "< 1000 KM per month",
+      "1000 - 2000 KM per month",
+      "3000 - 4000 KM per month",
+      "> 4000 KM per month"
+    ]
+  }, {
+    "optional": true,
+    "type": "textarea",
+    "name": "carDesc",
+    "text": "Provide a general description of your car"
+  }, {
+    "type": "checkbox",
+    "name": "usageInfo",
+    "text": "Mark All of them which is true for your car",
+    "options": [
+      "It's a preowned car",
+      "I don't have history of Road Accidents",
+      "This car is only used by me",
+      "I'm planning to buy a new car this year"
+    ]
+  }, {
+    "type": "radio",
+    "optional": true,
+    "text": "Your Age",
+    "name": "driverAge",
+    "options": [
+      "18-21 Years",
+      "22-30 Years",
+      "30-45 Years",
+      "> 45 Years"
+    ]
+  }, {
+    "type": "textarea",
+    "name": "insuranceNeed",
+    "text": "Provide your insurance preferences"
+  }]
 }
