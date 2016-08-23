@@ -70,10 +70,22 @@ describe('SurveyView', () => {
     customEvent = Object.create(customEvent, { target: {
       value: 'test',
       name: 'calrkde',
-      type: 'textarea'
+      type: 'checkbox'
     } });
     wrapper.instance().captureInput(customEvent);
     expect(wrapper.state()).to.include.keys(['userProgress']);
+  });
+
+  it('handleSubmit Method should submit user Input', () => {
+    const wrapper = shallow(<SurveyView />);
+    // Create own Header.
+    const Headers = function Headers() {};
+    Headers.prototype.append = () => true;
+    global.Headers = Headers;
+
+    wrapper.instance().handleSubmit();
+    // expect(value).to.be(true);
+    expect(wrapper.state()).to.eql({ userProgress: [] });
   });
 
 });
