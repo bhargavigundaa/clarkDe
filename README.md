@@ -8,6 +8,7 @@ Using ...
 * ES6 / ES7
 * Express
 * lodash
+* Chai , Enzyme, Istanbul
 
 ### Steps to run the app
 
@@ -16,6 +17,8 @@ Clone the application , cd into Root Directory ...
 1. npm install
 2. npm run start
 3. Open localhost:8995 in tour browser
+4. Fill any of the 2 available Surveys
+5. Once you successfully submit the survey , you can view the result in server console.
 
 ### JSON Schema for questionaire
 
