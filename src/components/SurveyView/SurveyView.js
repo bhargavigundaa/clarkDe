@@ -101,6 +101,7 @@ export class SurveyView extends Component { // eslint-disable-line
   }
 
   captureInput = (e) => {
+    console.log(JSON.stringify(e));
     const { value, name, type } = e.target;
     const { userProgress, qIndex } = this.state;
 

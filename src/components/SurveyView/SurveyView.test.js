@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { expect } from 'chai';
-import { shallow, mount } from 'enzyme';
+import { shallow, mount, render } from 'enzyme';
 import { SurveyView } from './SurveyView';
 
 // eslint-disable-next-line no-underscore-dangle
@@ -17,7 +17,7 @@ describe('SurveyView', () => {
   });
 
   it('View Should have atlest 5 divs', () => {
-    const wrapper = mount(<SurveyView />);
+    const wrapper = render(<SurveyView />);
     expect(wrapper.find('div').length).to.be.at.least(5);
   });
 
@@ -33,17 +33,47 @@ describe('SurveyView', () => {
     const localStorage = {};
     localStorage.setItem = () => true;
     localStorage.getItem = () => null;
-    GLOBAL.localStorage = localStorage;
+    global.localStorage = localStorage;
     // mock ends
     wrapper.setState({ qid: 1, entireQstn: questionMock, qstnHash: 1 });
     wrapper.find('button').simulate('click');
-    
+
     expect(wrapper.state()).to.include.keys(['question', 'totalQstn', 'userProgress', 'qIndex']);
     expect(wrapper.state()).to.include({
       entireQstn: questionMock,
       totalQstn: 4,
       qIndex: 0
     });
+  });
+
+  it('Navigate question Method should populate state with next question', () => {
+    const wrapper = shallow(<SurveyView />);
+    wrapper.instance().navigateQuestion(true);
+    expect(wrapper.state()).to.include({
+      animL: true,
+      totalQstn: -1
+    });
+  });
+
+  it('performAnimation Method should populate state animR right when passed false', () => {
+    const wrapper = shallow(<SurveyView />);
+    wrapper.instance().performAnimation(false);
+    expect(wrapper.state()).to.include({
+      animR: true
+    });
+  });
+
+  it('captureInput Method should capture user Input', () => {
+    const wrapper = shallow(<SurveyView />);
+    // Create own event and override target.
+    let customEvent = new CustomEvent('click', {});
+    customEvent = Object.create(customEvent, { target: {
+      value: 'test',
+      name: 'calrkde',
+      type: 'textarea'
+    } });
+    wrapper.instance().captureInput(customEvent);
+    expect(wrapper.state()).to.include.keys(['userProgress']);
   });
 
 });
